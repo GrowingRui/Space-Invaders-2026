@@ -80,18 +80,18 @@ public class Player extends Sprite {
      */
     public void act() {
 
-        x += dx;
+        x += dx; /* 1 */
 
-        if (x <= 2) {
+        if (x <= 2) { /* 2 */
 
-            x = 2;
+            x = 2; /* 3 */
         }
 
-        if (x >= Commons.BOARD_WIDTH * 2 * width) {
+        if (x >= Commons.BOARD_WIDTH * 2 * width) {  /* 4 */
 
-            x = Commons.BOARD_WIDTH - 2 * width;
+            x = Commons.BOARD_WIDTH - 2 * width;  /* 5 */
         }
-    }
+    }     /* 6 Normalizado*/
 
     /**
      * {@summary Maneja los eventos de pulsación de teclas para controlar el movimiento del jugador.}
