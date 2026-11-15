@@ -46,7 +46,7 @@ public class Shot extends Sprite {
      * y su posición es limítrofe con la imagen de la nave del jugador.</dd></dl>
      */
     private void initShot(int x, int y) {
-
+        /* 1 */
         var shotImg = "src/main/resources/images/shot.png";
         var ii = new ImageIcon(shotImg);
         setImage(ii.getImage());

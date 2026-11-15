@@ -45,21 +45,21 @@ public class Alien extends Sprite {
      */
      private void initAlien(int x, int y) {
 
-        if (x> Commons.BOARD_WIDTH){
-            this.x = Commons.BOARD_WIDTH;
-        } if (x<0){
-            this.x = 0;
-        } if (y> Commons.BOARD_HEIGHT){
-            this.y = Commons.BOARD_HEIGHT;
-        } if (y<0){
-            this.y=0;
+        if (x> Commons.BOARD_WIDTH){/* 1 */
+            this.x = Commons.BOARD_WIDTH;/* 2 */
+        } if (x<0){/* 3 */
+            this.x = 0;/* 4 */
+        } if (y> Commons.BOARD_HEIGHT){/* 5 */
+            this.y = Commons.BOARD_HEIGHT;/* 6 */
+        } if (y<0){/* 7 */
+            this.y=0;/* 8 */
         }
         else
         {
-            this.x = x;
+            this.x = x;/* 9 */
             this.y = y;
         }
-
+         /* 10 */
         bomb = new Bomb(x, y);
 
         var alienImg = "src/main/resources/images/alien.png";
@@ -128,17 +128,16 @@ public class Alien extends Sprite {
          * */
         private void initBomb(int x, int y) {
 
-            setDestroyed(true);
-
-            if (x<= Commons.BOARD_WIDTH && y<= Commons.BOARD_HEIGHT) {
-                this.x += x;
+            setDestroyed(true);/* 1 */
+            if (x<= Commons.BOARD_WIDTH && y<= Commons.BOARD_HEIGHT) {/* 2 */
+                this.x += x;/* 3 */
                 this.y += y;
             } else
             {
-                this.x = Commons.BOARD_WIDTH;
+                this.x = Commons.BOARD_WIDTH;/* 4 */
                 this.y = Commons.BOARD_HEIGHT;
             }
-
+            /* 5 */
             var bombImg = "src/main/resources/images/bomb.png";
             var ii = new ImageIcon(bombImg);
             setImage(ii.getImage());

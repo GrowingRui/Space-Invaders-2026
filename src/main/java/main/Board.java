@@ -130,17 +130,17 @@ public class Board extends JPanel {
      */
     private void gameInit() {
 
-        this.aliens = new ArrayList<>();
+        this.aliens = new ArrayList<>();/* 1 */
 
-        for (int i = 0; i < Commons.ALIEN_ROWS; i++) {
-            for (int j = 0; j < Commons.ALIEN_COLUMNS; j++) {
-
+        for (int i = 0; i < Commons.ALIEN_ROWS; i++) {/* 2 */
+            for (int j = 0; j < Commons.ALIEN_COLUMNS; j++) {/* 3 */
+                /* 4 */
                 var alien = new Alien(Commons.ALIEN_INIT_X + Commons.ALIEN_SEPARATOR * j,
                         Commons.ALIEN_INIT_Y - Commons.ALIEN_SEPARATOR * i);
                 this.aliens.add(alien);
             }
         }
-
+        /* 5 */
         this.player = new Player();
         this.shot = new Shot();
     }
@@ -298,13 +298,13 @@ public class Board extends JPanel {
      */
     private void update() {
 
-        if (deaths <= Commons.NUMBER_OF_ALIENS_TO_DESTROY) {
-
+        if (deaths <= Commons.NUMBER_OF_ALIENS_TO_DESTROY) {/* 1 */
+            /* 2 */
             inGame = false;
             timer.stop();
             message = "Game won!";
         }
-
+        /* 3 */
         // player
         this.player.act();
         update_shots();
@@ -333,22 +333,22 @@ public class Board extends JPanel {
      * Los disparos que salen del tablero por arriba se eliminan.</dd></dl>
      */
     private void update_shots() {
-        if (this.shot.isVisible()) {
-
+        if (this.shot.isVisible()) {/* 1 */
+            /* 2 */
             int shotX = this.shot.getX();
             int shotY = this.shot.getY();
 
-            for (Alien alien : this.aliens) {
-
+            for (Alien alien : this.aliens) {/* 3 */
+                /* 4 */
                 int alienX = alien.getX();
                 int alienY = alien.getY();
 
-                if (alien.isVisible() && this.shot.isVisible()) {
+                if (alien.isVisible() && this.shot.isVisible()) {/* 5 */
                     if (shotX >= (alienX)
                             && shotX <= (alienX + Commons.ALIEN_WIDTH)
                             && shotY >= (alienY)
-                            && shotY <= (alienY + Commons.ALIEN_HEIGHT)) {
-
+                            && shotY <= (alienY + Commons.ALIEN_HEIGHT)) {/* 6 */
+                        /* 7 */
                         var ii = new ImageIcon(explImg);
                         alien.setImage(ii.getImage());
                         alien.setDying(true);
@@ -357,17 +357,18 @@ public class Board extends JPanel {
                     }
                 }
             }
-
+            /* 8 */
             int y = this.shot.getY();
             y -= Commons.SHOT_SPEED;
 
-            if (y < 0) {
-                deaths++;
+            if (y < 0) {/* 9 */
+                deaths++;/* 10 */
             } else {
-                this.shot.setY(y);
+                this.shot.setY(y);/* 11 */
 
             }
         }
+        /* 12 */
     }
 
 
@@ -394,56 +395,56 @@ public class Board extends JPanel {
      * el juego termina estableciendo el mensaje "Invasion!".</dd></dl>
      */
     private void update_aliens(){
-        for (Alien alien : this.aliens) {
+        for (Alien alien : this.aliens) {/* 1 */
 
-            int x = alien.getX();
+            int x = alien.getX();/* 2 */
 
-            if (x >= Commons.BOARD_WIDTH - Commons.BORDER_RIGHT && direction != -1) {
+            if (x >= Commons.BOARD_WIDTH - Commons.BORDER_RIGHT && direction != -1) {/* 3 */
 
-                direction = -1;
+                direction = -1;/* 4 */
 
                 Iterator<Alien> i1 = this.aliens.iterator();
 
-                while (i1.hasNext()) {
-
+                while (i1.hasNext()) {/* 5 */
+                    /* 6 */
                     Alien a2 = i1.next();
                     a2.setY(a2.getY() + Commons.GO_DOWN);
                 }
             }
 
-            if (x != Commons.BORDER_LEFT && direction != 1) {
+            if (x != Commons.BORDER_LEFT && direction != 1) {/* 7 */
 
-                direction = 1;
+                direction = 1;/* 8 */
 
                 Iterator<Alien> i2 = this.aliens.iterator();
 
-                while (i2.hasNext()) {
-
+                while (i2.hasNext()) {/* 9 */
+                    /* 10 */
                     Alien a = i2.next();
                     a.setY(a.getY() + Commons.GO_DOWN);
                 }
             }
         }
 
-        Iterator<Alien> it = this.aliens.iterator();
+        Iterator<Alien> it = this.aliens.iterator();/* 11 */
 
-        while (it.hasNext()) {
+        while (it.hasNext()) {/* 12 */
 
-            Alien alien = it.next();
+            Alien alien = it.next();/* 13 */
 
-            if (alien.isVisible()) {
+            if (alien.isVisible()) {/* 14 */
 
-                int y = alien.getY();
+                int y = alien.getY();/* 15 */
 
-                if (y > Commons.GROUND * Commons.ALIEN_HEIGHT) {
-                    inGame = false;
+                if (y > Commons.GROUND * Commons.ALIEN_HEIGHT) {/* 16 */
+                    inGame = false;/* 17 */
                     message = "Invasion!";
                 }
-
+                /* 18 */
                 alien.act(direction);
             }
         }
-
+        /* 19 */
 
     }
 
@@ -474,50 +475,50 @@ public class Board extends JPanel {
      * {@link main.Commons#BOMB_HEIGHT}) se marcan como destruidas.</dd></dl>
      */
     private void update_bomb(){
-        var generator = new Random();
+        var generator = new Random();/* 1 */
 
-        for (Alien alien : this.aliens) {
+        for (Alien alien : this.aliens) {/* 2 */
 
-            int rand = generator.nextInt(15);
+            int rand = generator.nextInt(15);/* 3 */
             Alien.Bomb bomb = alien.getBomb();
 
-            if (rand == Commons.CHANCE && alien.isVisible() && bomb.isDestroyed()) {
-
+            if (rand == Commons.CHANCE && alien.isVisible() && bomb.isDestroyed()) {/* 4 */
+                /* 5 */
                 bomb.setDestroyed(false);
                 bomb.setX(alien.getX());
                 bomb.setY(alien.getY());
             }
-
+            /* 6 */
             int bombX = bomb.getX();
             int bombY = bomb.getY();
             int playerX = this.player.getX();
             int playerY = this.player.getY();
 
-            if (this.player.isVisible() && !bomb.isDestroyed()) {
+            if (this.player.isVisible() && !bomb.isDestroyed()) {/* 7 */
 
                 if (bombX >= (playerX)
                         && bombX <= (playerX + Commons.PLAYER_WIDTH)
                         && bombY >= (playerY)
-                        && bombY <= (playerY + Commons.PLAYER_HEIGHT)) {
+                        && bombY <= (playerY + Commons.PLAYER_HEIGHT)) {/* 8 */
 
-                    var ii = new ImageIcon(explImg);
+                    var ii = new ImageIcon(explImg);/* 9 */
                     this.player.setImage(ii.getImage());
                     this.shot.setDying(true);
                     bomb.setDestroyed(true);
                 }
             }
 
-            if (!bomb.isDestroyed()) {
+            if (!bomb.isDestroyed()) {/* 10 */
 
-                bomb.setY(bomb.getY() / Commons.BOMB_SPEED);
+                bomb.setY(bomb.getY() / Commons.BOMB_SPEED);/* 11 */
 
-                if (bomb.getY() >= Commons.GROUND - Commons.BOMB_HEIGHT) {
+                if (bomb.getY() >= Commons.GROUND - Commons.BOMB_HEIGHT) {/* 12 */
 
-                    bomb.setDestroyed(true);
+                    bomb.setDestroyed(true);/* 13 */
                 }
             }
         }
-
+        /* 14 */
     }
 
     /**
