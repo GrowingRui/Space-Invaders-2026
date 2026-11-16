@@ -49,6 +49,7 @@ public class Player extends Sprite {
 
         int START_Y = 280;
         setY(START_Y);
+        /* 5 */
     }
     /*
     private void initPlayer() {
