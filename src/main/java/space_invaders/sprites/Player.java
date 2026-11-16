@@ -111,13 +111,13 @@ public class Player extends Sprite {
         int key = e.getKeyCode();/* 1 */
 
         if (key == KeyEvent.VK_LEFT) {/* 2 */
-            /* 3 */
-            dx = -2;
+
+            dx = -2; /* 3 */
         }
 
         if (key == KeyEvent.VK_RIGHT) {/* 4 */
-            /* 5 */
-            dx = 2;
+
+            dx = 2; /* 5 */
         }
         /* 6 */
     }
