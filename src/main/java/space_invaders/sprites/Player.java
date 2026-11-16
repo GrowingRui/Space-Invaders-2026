@@ -32,13 +32,13 @@ public class Player extends Sprite {
      */
     private void initPlayer() {
 
-        URL imageUrl = Player.class.getResource("/images/player.png");
+        URL imageUrl = Player.class.getResource("/images/player.png");/* 1 */
 
-        if (imageUrl == null) {
+        if (imageUrl == null) {/* 2 */
             throw new IllegalStateException(
-                    "No se encuentra el recurso /images/player.png");
+                    "No se encuentra el recurso /images/player.png");/* 3 */
         }
-
+        /* 4 */
         ImageIcon ii = new ImageIcon(imageUrl);
 
         width = ii.getImage().getWidth(null);
@@ -107,17 +107,18 @@ public class Player extends Sprite {
     */
     public void keyPressed(KeyEvent e) {
 
-        int key = e.getKeyCode();
+        int key = e.getKeyCode();/* 1 */
 
-        if (key == KeyEvent.VK_LEFT) {
-
+        if (key == KeyEvent.VK_LEFT) {/* 2 */
+            /* 3 */
             dx = -2;
         }
 
-        if (key == KeyEvent.VK_RIGHT) {
-
+        if (key == KeyEvent.VK_RIGHT) {/* 4 */
+            /* 5 */
             dx = 2;
         }
+        /* 6 */
     }
 
     /**
@@ -130,16 +131,17 @@ public class Player extends Sprite {
      * */
     public void keyReleased(KeyEvent e) {
 
-        int key = e.getKeyCode();
+        int key = e.getKeyCode();/* 1 */
 
-        if (key == KeyEvent.VK_LEFT) {
-
+        if (key == KeyEvent.VK_LEFT) {/* 2 */
+            /* 3 */
             dx = 2;
         }
 
-        if (key == KeyEvent.VK_RIGHT) {
-
+        if (key == KeyEvent.VK_RIGHT) {/* 4 */
+            /* 5 */
             dx = 0;
         }
+        /* 6 */
     }
 }
