@@ -26,10 +26,10 @@ public class PlayerTest {
 
     @Test
     void testACT1() {
-        p.x = 328;
+        p.x = 358;
         p.dx = 2;
         p.act();
-        assertEquals(328, p.x);
+        assertEquals(358, p.x);
     }
 
     @Test
@@ -45,7 +45,7 @@ public class PlayerTest {
         p.x = 20000;
         p.dx = 0;
         p.act();
-        assertEquals(328, p.x);
+        assertEquals(358, p.x);
     }
 
     @Test
